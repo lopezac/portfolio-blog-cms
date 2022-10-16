@@ -1,5 +1,7 @@
+import RouteSwitch from "./RouteSwitch";
+
 function App() {
-  return <div>Hello World</div>;
+  return <RouteSwitch />;
 }
 
 export default App;
