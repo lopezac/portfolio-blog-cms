@@ -1,10 +1,31 @@
+import { VioletBtn } from "@components/buttons";
+import { BlogApi } from "@services";
+import useAuth from "@hooks/useAuth";
+
 export default function SignInForm() {
+  const blogApi = BlogApi();
+  const { signIn } = useAuth();
+
+  async function handleSubmit(event) {
+    try {
+      event.preventDefault();
+      const username = event.target.username.value;
+      const password = event.target.password.value;
+
+      const token = await blogApi.signIn(username, password);
+      console.log("token ", token);
+      signIn(token);
+    } catch (err) {
+      throw Error("Error in the login");
+    }
+  }
+
   return (
     <>
       <h1>Sign In Form</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div>
-          <label for="username">Username</label>
+          <label htmlFor="username">Username</label>
           <input
             type="text"
             id="username"
@@ -16,9 +37,9 @@ export default function SignInForm() {
         </div>
 
         <div>
-          <label for="password">Password</label>
+          <label htmlFor="password">Password</label>
           <input
-            type="text"
+            type="password"
             id="password"
             name="password"
             minLength="7"
@@ -26,7 +47,7 @@ export default function SignInForm() {
           />
         </div>
 
-        <button type="submit">Submit</button>
+        <VioletBtn type="submit">Submit</VioletBtn>
       </form>
     </>
   );

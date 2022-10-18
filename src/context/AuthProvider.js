@@ -1,24 +1,26 @@
 import { createContext, useState, useMemo } from "react";
-import { redirect } from "react-router-dom";
-import { LocalStorage } from "@services/LocalStorage";
+import { useNavigate } from "react-router-dom";
+import { LocalStorage } from "@services";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(LocalStorage.get("user"));
-
-  const login = (data) => {
+  const navigate = useNavigate();
+  // "null" !== null
+  const signIn = (data) => {
     setUser(data);
     LocalStorage.set("user", data);
-    redirect("/posts");
+    navigate("/posts");
   };
 
-  const logout = () => {
+  const signOut = () => {
     setUser(null);
-    redirect("/");
+    LocalStorage.set("user", null);
+    navigate("/");
   };
 
-  const value = useMemo(() => ({ user, login, logout }), [user]);
+  const value = useMemo(() => ({ user, signIn, signOut }), [user]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
