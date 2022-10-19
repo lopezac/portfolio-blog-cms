@@ -7,7 +7,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(LocalStorage.get("user"));
   const navigate = useNavigate();
-  // "null" !== null
+
   const signIn = (data) => {
     setUser(data);
     LocalStorage.set("user", data);

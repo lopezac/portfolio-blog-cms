@@ -1,19 +1,19 @@
-import { useState, useEffect } from "react";
-import useAuth from "@hooks/useAuth";
+import { useEffect } from "react";
+import { useAuth, useUser } from "@hooks";
 import { VioletBtn } from "@components/buttons";
 import { Link } from "@components/wrappers";
 
 export default function Navbar() {
   const { user, signOut } = useAuth();
-  const [userSignedIn, setUserSignedIn] = useState(user);
+  const [currentUser, setCurrentUser] = useUser();
 
   useEffect(() => {
-    console.log("userSignedIn, user", userSignedIn, user);
-  }, []);
+    console.log("currentUser, user", currentUser, user);
+  }, [currentUser]);
 
   function handleClick() {
     console.log("handleClick run");
-    setUserSignedIn(false);
+    setCurrentUser(false);
     signOut();
   }
 
@@ -23,7 +23,7 @@ export default function Navbar() {
         <a href="/">Home</a>
         <a href="/posts">Posts</a>
         <a href="/posts/create">Create Post</a>
-        {userSignedIn ? (
+        {currentUser ? (
           <button onClick={handleClick}>Sign Out</button>
         ) : (
           <Link to="/sign-in">
