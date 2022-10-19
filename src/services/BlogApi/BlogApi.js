@@ -4,8 +4,9 @@ import getReqOptions from "./getReqOptions";
 
 export default function BlogApi() {
   const apiUrl = getApiUrl();
+  console.log("run", apiUrl);
 
-  async function getPosts({ filter, sort, page }) {
+  async function getPosts({ filter, sort, page } = {}) {
     try {
       const query = getQuery(filter, sort, page);
       const url = `${apiUrl}/posts?${query}`;
@@ -71,7 +72,6 @@ export default function BlogApi() {
       };
 
       const res = await fetch(url, options);
-      console.log("ruuuun", res);
       const data = await res.json();
 
       return data;

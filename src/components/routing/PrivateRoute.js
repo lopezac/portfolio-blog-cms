@@ -8,10 +8,5 @@ export default function PrivateRoute() {
     redirect("/sign-in");
   }
 
-  return (
-    <div>
-      <p>Protected boy</p>
-      <Outlet />
-    </div>
-  );
+  return <Outlet />;
 }
