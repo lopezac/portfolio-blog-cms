@@ -17,6 +17,7 @@ function PostsTable({ posts }) {
               title={post.title}
               date={post.timestamp}
               keyword={post.keyword}
+              id={post._id}
             />
           );
         })}

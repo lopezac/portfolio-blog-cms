@@ -1,4 +1,4 @@
-import LocalStorage from "./LocalStorage";
+import SessionStorage from "./SessionStorage";
 import BlogApi from "./BlogApi/BlogApi";
 
-export { LocalStorage, BlogApi };
+export { SessionStorage, BlogApi };

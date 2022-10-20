@@ -1,22 +1,22 @@
 import { createContext, useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import { LocalStorage } from "@services";
+import { SessionStorage } from "@services";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(LocalStorage.get("user"));
+  const [user, setUser] = useState(SessionStorage.get("user"));
   const navigate = useNavigate();
 
   const signIn = (data) => {
     setUser(data);
-    LocalStorage.set("user", data);
+    SessionStorage.set("user", data);
     navigate("/posts");
   };
 
   const signOut = () => {
     setUser(null);
-    LocalStorage.set("user", null);
+    SessionStorage.set("user", null);
     navigate("/");
   };
 

@@ -14,8 +14,8 @@ export default function SignInForm() {
       const password = event.target.password.value;
 
       const token = await blogApi.signIn(username, password);
-      signIn(token);
-      setCurrentUser(token);
+      await signIn(token);
+      await setCurrentUser(token);
     } catch (err) {
       throw Error("Error in the login");
     }

@@ -4,6 +4,7 @@ import SignInForm from "@views/SignInForm/SignInForm";
 import HomePage from "@views/Home/HomePage";
 import PrivateRoute from "@components/routing/PrivateRoute";
 import { PostsPage } from "@views/Posts";
+import PostDetail from "@views/Posts/PostDetail/PostDetail";
 
 export default function RouteSwitch() {
   return (
@@ -15,7 +16,7 @@ export default function RouteSwitch() {
           <Route index element={<PostsPage />} />
           <Route path="create" element={"<CreatePost />"} />
           <Route path=":postId">
-            <Route index element={"<PostDetail />"} />
+            <Route index element={<PostDetail />} />
             <Route path="update" element={"<UpdatePost />"} />
             <Route path="delete" element={"<DeletePost />"} />
           </Route>

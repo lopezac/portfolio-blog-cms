@@ -1,5 +1,8 @@
-import { useParams, useState, useEffect } from "react";
-import BlogApi from "@services";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { BlogApi } from "@services";
+import PostInfo from "./PostInfo";
+import PostComments from "./PostComments";
 
 export default function PostDetail() {
   const [post, setPost] = useState({});
@@ -20,7 +23,13 @@ export default function PostDetail() {
 
   return (
     <>
-      <h1>{post.title}</h1>
+      <PostInfo
+        title={post.title}
+        date={post.timestamp}
+        keyword={post.keyword}
+        text={post.text}
+      />
+      <PostComments id={postId} />
     </>
   );
 }

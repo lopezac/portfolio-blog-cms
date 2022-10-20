@@ -1,10 +1,11 @@
 import getApiUrl from "./getApiUrl";
 import getQuery from "./getQuery";
 import getReqOptions from "./getReqOptions";
+import { useAuth } from "@hooks";
 
 export default function BlogApi() {
   const apiUrl = getApiUrl();
-  console.log("run", apiUrl);
+  const { user } = useAuth();
 
   async function getPosts({ filter, sort, page } = {}) {
     try {
@@ -49,7 +50,7 @@ export default function BlogApi() {
   async function submitComment(username, text, post) {
     try {
       const url = `${apiUrl}/comments`;
-      let options = {
+      const options = {
         ...getReqOptions("POST"),
         body: JSON.stringify({ username, text, post }),
       };
@@ -66,7 +67,7 @@ export default function BlogApi() {
   async function signIn(username, password) {
     try {
       const url = `${apiUrl}/sign-in`;
-      let options = {
+      const options = {
         ...getReqOptions("POST"),
         body: JSON.stringify({ username, password }),
       };
@@ -80,5 +81,44 @@ export default function BlogApi() {
     }
   }
 
-  return { getPosts, getPost, getPostComments, submitComment, signIn };
+  async function updatePost(id, params) {
+    try {
+      const url = `${apiUrl}/posts/${id}`;
+      const options = {
+        ...getReqOptions("PUT", user),
+        body: JSON.stringify({ ...params }),
+      };
+
+      const res = await fetch(url, options);
+      const data = await res.json();
+
+      return data;
+    } catch (err) {
+      throw Error("Error updating post at CMS", err, id, ...params);
+    }
+  }
+
+  async function deletePost(id, type = "posts") {
+    try {
+      const url = `${apiUrl}/${type}/${id}`;
+      const options = { ...getReqOptions("DELETE", user) };
+
+      const res = await fetch(url, options);
+      const data = await res.json();
+
+      return data;
+    } catch (err) {
+      throw Error("Error deleting at CMS API", err, id, type);
+    }
+  }
+
+  return {
+    getPosts,
+    getPost,
+    getPostComments,
+    submitComment,
+    signIn,
+    updatePost,
+    deletePost,
+  };
 }
