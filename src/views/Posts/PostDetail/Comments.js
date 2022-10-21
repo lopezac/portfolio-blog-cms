@@ -6,6 +6,7 @@ function Comments({ comments }) {
     return (
       <Comment
         key={comment._id}
+        id={comment._id}
         username={comment.username}
         text={comment.text}
         date={comment.timestamp}

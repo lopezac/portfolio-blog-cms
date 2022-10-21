@@ -1,5 +1,5 @@
 import { string } from "prop-types";
-import DeleteBtn from "@views/Posts/DeleteBtn";
+import DeleteBtn from "./DeleteBtn";
 import { formatDate } from "@utils/date";
 import { RowList } from "@components/lists";
 import { GreenBtn } from "@components/buttons";
