@@ -1,3 +1,4 @@
-import FormButton from "./FormButton/FormButton";
+import TextInput from "./TextInput/TextInput";
+import DateInput from "./DateInput/DateInput";
 
-export { FormButton };
+export { TextInput, DateInput };

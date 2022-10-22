@@ -1,22 +1,22 @@
 import { string } from "prop-types";
 import DeleteBtn from "./DeleteBtn";
+import UpdateBtn from "./UpdateBtn";
 import { formatDate } from "@utils/date";
 import { RowList } from "@components/lists";
-import { GreenBtn } from "@components/buttons";
 
 function PostInfo({ title, date, keyword, text }) {
   return (
     <section>
       <div>
         <h1>{title}</h1>
-        <GreenBtn>Update</GreenBtn>
+        <UpdateBtn type="posts">Update</UpdateBtn>
         <DeleteBtn type="posts">Delete</DeleteBtn>
       </div>
       <RowList>
         <li>{formatDate(date)}</li>
         <li>{keyword}</li>
       </RowList>
-      <p>{text}</p>
+      <div dangerouslySetInnerHTML={{ __html: text }} />
     </section>
   );
 }

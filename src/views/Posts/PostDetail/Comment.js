@@ -1,7 +1,7 @@
 import { string } from "prop-types";
 import { formatDate } from "@utils/date";
-import { GreenBtn } from "@components/buttons";
 import DeleteBtn from "./DeleteBtn";
+import UpdateBtn from "./UpdateBtn";
 import { RowList } from "@components/lists";
 
 function Comment({ username, text, date, id }) {
@@ -11,7 +11,9 @@ function Comment({ username, text, date, id }) {
         <li>{username}</li>
         <li>{formatDate(date)}</li>
       </RowList>
-      <GreenBtn>Update</GreenBtn>
+      <UpdateBtn type="comments" commentId={id}>
+        Update
+      </UpdateBtn>
       <DeleteBtn type="comments" commentId={id}>
         Delete
       </DeleteBtn>

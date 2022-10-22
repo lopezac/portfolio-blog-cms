@@ -8,16 +8,7 @@ function PostComments({ id }) {
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
-    async function getComments() {
-      try {
-        console.log("ida t postcomments", id);
-        const data = await blogApi.getPostComments(id);
-        setComments(data);
-      } catch (err) {
-        throw Error("Error getting comments at CMS", err, id);
-      }
-    }
-    getComments();
+    blogApi.getPostComments(id).then((data) => setComments(data));
   }, [id]);
 
   return (

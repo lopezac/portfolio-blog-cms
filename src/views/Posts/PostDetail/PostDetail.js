@@ -21,6 +21,8 @@ export default function PostDetail() {
     getPost();
   }, [postId]);
 
+  if (!post || !Object.keys(post).length)
+    return <h1>There is no post with that id or title</h1>;
   return (
     <>
       <PostInfo

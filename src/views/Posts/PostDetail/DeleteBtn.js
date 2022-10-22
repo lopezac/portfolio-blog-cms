@@ -13,7 +13,7 @@ function DeleteBtn({ type, children, commentId }) {
     try {
       if (type === "posts") {
         await blogApi.deletePost(postId, type);
-        navigate("/posts");
+        navigate(`/${type}`);
       } else {
         await blogApi.deletePost(commentId, type);
         reloadPage();

@@ -1,9 +1,8 @@
 import { VioletBtn } from "@components/buttons";
 import { BlogApi } from "@services";
-import { useUser, useAuth } from "@hooks";
+import { useAuth } from "@hooks";
 
 export default function SignInForm() {
-  const [currentUser, setCurrentUser] = useUser();
   const blogApi = BlogApi();
   const { signIn } = useAuth();
 
@@ -15,7 +14,6 @@ export default function SignInForm() {
 
       const token = await blogApi.signIn(username, password);
       await signIn(token);
-      await setCurrentUser(token);
     } catch (err) {
       throw Error("Error in the login");
     }

@@ -6,6 +6,8 @@ import PrivateRoute from "@components/routing/PrivateRoute";
 import { PostsPage } from "@views/Posts";
 import PostDetail from "@views/Posts/PostDetail/PostDetail";
 import CreatePost from "@views/Posts/PostForm/CreatePost";
+import UpdatePost from "@views/Posts/PostForm/UpdatePost";
+import UpdateComment from "@views/Comments/UpdateComment";
 
 export default function RouteSwitch() {
   return (
@@ -18,13 +20,12 @@ export default function RouteSwitch() {
           <Route path="create" element={<CreatePost />} />
           <Route path=":postId">
             <Route index element={<PostDetail />} />
-            <Route path="update" element={"<UpdatePost />"} />
+            <Route path="update" element={<UpdatePost />} />
             <Route path="delete" element={"<DeletePost />"} />
           </Route>
         </Route>
         <Route path="comments/:commentId" element={<PrivateRoute />}>
-          <Route index element={"<CommentDetail />"} />
-          <Route path="update" element={"<UpdateComment />"} />
+          <Route path="update" element={<UpdateComment />} />
           <Route path="delete" element={"<DeleteComment />"} />
         </Route>
       </Route>
