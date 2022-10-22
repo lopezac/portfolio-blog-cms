@@ -51,17 +51,17 @@ export default function CreatePost() {
           apiKey={process.env.REACT_APP_TINY_API}
           onInit={(evt, editor) => (editorRef.current = editor)}
           initialValue="<p>This is the initial content of the editor.</p>"
-          init={{ height: 500 }}
+          init={{
+            height: 500,
+            image_caption: true,
+            automatic_uploads: true,
+            image_title: true,
+            file_picker_types: "image", //also media and file
+            file_picker_callback: (cb, value, meta) => {},
+          }}
           plugins="print preview fullpage searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor insertdatetime advlist lists textcolor wordcount imagetools contextmenu colorpicker textpattern"
           toolbar="styleselect bold italic underline | forecolor backcolor | alignleft aligncenter alignright | bullist numlist outdent indent | link image table youtube giphy | codesample code"
-          convert_urls={false}
-          image_caption={true}
-          automatic_uploads={true}
-          image_title={true}
-          file_picker_types="file image media"
-          file_picker_callback={(cb, value, meta) => {
-            cb();
-          }}
+          // convert_urls={false}
         />
       </div>
       <button>Create</button>
