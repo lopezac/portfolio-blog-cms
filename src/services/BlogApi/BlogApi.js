@@ -2,6 +2,7 @@ import getApiUrl from "./getApiUrl";
 import getQuery from "./getQuery";
 import getReqOptions from "./getReqOptions";
 import { useAuth } from "@hooks";
+import { isJSON } from "@utils/string";
 
 export default function BlogApi() {
   const apiUrl = getApiUrl();
@@ -19,12 +20,12 @@ export default function BlogApi() {
     }
   }
 
-  async function createPost(title, keyword, text) {
+  async function createPost(title, keyword, text, imageUrl) {
     try {
       const url = `${apiUrl}/posts`;
       const options = {
         ...getReqOptions("POST", user),
-        body: JSON.stringify({ title, keyword, text }),
+        body: JSON.stringify({ title, keyword, text, imageUrl }),
       };
 
       const res = await fetch(url, options);

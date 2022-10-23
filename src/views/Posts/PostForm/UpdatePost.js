@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import { Editor } from "@tinymce/tinymce-react";
 import { useNavigate, useParams } from "react-router-dom";
 import { BlogApi } from "@services";
 import { TextInput } from "@components/forms";
+import TextEditor from "./TextEditor";
+import { Form, FormRow } from "@components/forms";
 
 export default function UpdatePost() {
   const [post, setPost] = useState(null);
@@ -21,8 +22,9 @@ export default function UpdatePost() {
     const text = editorRef.current.getContent();
     const title = e.target.title.value;
     const keyword = e.target.keyword.value;
+    const imageUrl = e.target.imageUrl.value;
 
-    blogApi.updatePost(postId, { title, keyword, text }).then(() => {
+    blogApi.updatePost(postId, { title, keyword, text, imageUrl }).then(() => {
       navigate(`/posts/${post._id}`);
     });
   }
@@ -33,8 +35,8 @@ export default function UpdatePost() {
 
   if (!post) return;
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
+    <Form onSubmit={handleSubmit}>
+      <FormRow>
         <label htmlFor="title">Title</label>
         <TextInput
           name="title"
@@ -44,8 +46,8 @@ export default function UpdatePost() {
           maxLength="300"
           value={post.title}
         />
-      </div>
-      <div>
+      </FormRow>
+      <FormRow>
         <label htmlFor="keyword">Keyword</label>
         <TextInput
           name="keyword"
@@ -55,19 +57,24 @@ export default function UpdatePost() {
           maxLength="80"
           value={post.keyword}
         />
-      </div>
-      <div>
-        <Editor
-          apiKey={process.env.REACT_APP_TINY_API}
-          onInit={(evt, editor) => (editorRef.current = editor)}
-          initialValue={post.text}
-          init={{ height: 500 }}
+      </FormRow>
+      <FormRow>
+        <label htmlFor="imageUrl">Cover image URL</label>
+        <TextInput
+          name="imageUrl"
+          id="imageUrl"
+          value={post.imageUrl}
+          required
+          minLength="2"
         />
-      </div>
+      </FormRow>
+      <FormRow>
+        <TextEditor editorRef={editorRef} initialValue={post.text} />
+      </FormRow>
       <button>Update</button>
       <button type="button" onClick={goBack}>
         Cancel
       </button>
-    </form>
+    </Form>
   );
 }
