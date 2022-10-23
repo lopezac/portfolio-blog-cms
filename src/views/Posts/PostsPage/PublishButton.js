@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { bool, string } from "prop-types";
-import { VioletBtn } from "@components/buttons";
+import { PrimaryBtn } from "@components/buttons";
 import { BlogApi } from "@services";
 
 export default function PublishButton({ published, id }) {
@@ -28,7 +28,9 @@ export default function PublishButton({ published, id }) {
     updatePost();
   }, [isPublished]);
 
-  return <VioletBtn onClick={handleClick}>{isPublished.toString()}</VioletBtn>;
+  return (
+    <PrimaryBtn onClick={handleClick}>{isPublished.toString()}</PrimaryBtn>
+  );
 }
 
 PublishButton.propTypes = {

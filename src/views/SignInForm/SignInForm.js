@@ -1,4 +1,4 @@
-import { VioletBtn } from "@components/buttons";
+import { PrimaryBtn } from "@components/buttons";
 import { BlogApi } from "@services";
 import { useAuth } from "@hooks";
 
@@ -46,7 +46,7 @@ export default function SignInForm() {
           />
         </div>
 
-        <VioletBtn type="submit">Submit</VioletBtn>
+        <PrimaryBtn type="submit">Submit</PrimaryBtn>
       </form>
     </>
   );

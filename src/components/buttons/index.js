@@ -1,6 +1,5 @@
-import StyledVioletBtn from "./VioletBtn.styles";
-import StyledRedBtn from "./RedBtn.styles";
-import StyledGreenBtn from "./GreenBtn.styles";
+import StyledPrimaryBtn from "./PrimaryBtn.styles";
+import StyledSecondaryBtn from "./SecondaryBtn.styles";
 import { Link } from "@components/wrappers";
 
 const handleLinkWrapping = (Component, props) => {
@@ -11,14 +10,10 @@ const handleLinkWrapping = (Component, props) => {
   return button;
 };
 
-export const VioletBtn = (props) => {
-  return handleLinkWrapping(StyledVioletBtn, props);
+export const PrimaryBtn = (props) => {
+  return handleLinkWrapping(StyledPrimaryBtn, props);
 };
 
-export const RedBtn = (props) => {
-  return handleLinkWrapping(StyledRedBtn, props);
-};
-
-export const GreenBtn = (props) => {
-  return handleLinkWrapping(StyledGreenBtn, props);
+export const SecondaryBtn = (props) => {
+  return handleLinkWrapping(StyledSecondaryBtn, props);
 };

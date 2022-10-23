@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import theme from "@styles/theme";
 
-const StyledFooter = styled.footer`
+const StyledMain = styled.main`
   background-color: ${theme.darkPrimary};
 `;
 
-export default StyledFooter;
+export default StyledMain;

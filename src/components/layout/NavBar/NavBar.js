@@ -1,6 +1,8 @@
 import { useAuth } from "@hooks";
-import { VioletBtn } from "@components/buttons";
+import { PrimaryBtn } from "@components/buttons";
 import { Link } from "@components/wrappers";
+import StyledHeader from "./Header.styles";
+import StyledNavbar from "./NavBar.styles";
 
 export default function Navbar() {
   const { signOut, user } = useAuth();
@@ -10,19 +12,21 @@ export default function Navbar() {
   }
 
   return (
-    <header>
-      <nav>
-        <a href="/">Home</a>
-        <a href="/posts">Posts</a>
-        <a href="/posts/create">Create Post</a>
+    <StyledHeader>
+      <StyledNavbar>
+        <Link to="/">Home</Link>
+        <Link to="/posts">Posts</Link>
+        <Link to="/posts/create">Create Post</Link>
+      </StyledNavbar>
+      <StyledNavbar>
         {user ? (
-          <VioletBtn onClick={handleClick}>Sign Out</VioletBtn>
+          <PrimaryBtn onClick={handleClick}>Sign Out</PrimaryBtn>
         ) : (
           <Link to="/sign-in">
-            <VioletBtn>Sign In</VioletBtn>
+            <PrimaryBtn>Sign In</PrimaryBtn>
           </Link>
         )}
-      </nav>
-    </header>
+      </StyledNavbar>
+    </StyledHeader>
   );
 }
