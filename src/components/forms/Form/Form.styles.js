@@ -1,8 +1,8 @@
 import styled from "styled-components";
+import { FlexCol } from "@components/globals";
 
 const StyledForm = styled.form`
-  display: flex;
-  flex-direction: column;
+  ${FlexCol}
   gap: 10px;
 `;
 

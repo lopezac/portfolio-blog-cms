@@ -1,5 +1,5 @@
 import { useAuth } from "@hooks";
-import { PrimaryBtn } from "@components/buttons";
+import { SecondaryBtn } from "@components/buttons";
 import { Link } from "@components/wrappers";
 import StyledHeader from "./Header.styles";
 import StyledNavbar from "./NavBar.styles";
@@ -20,10 +20,10 @@ export default function Navbar() {
       </StyledNavbar>
       <StyledNavbar>
         {user ? (
-          <PrimaryBtn onClick={handleClick}>Sign Out</PrimaryBtn>
+          <SecondaryBtn onClick={handleClick}>Sign Out</SecondaryBtn>
         ) : (
           <Link to="/sign-in">
-            <PrimaryBtn>Sign In</PrimaryBtn>
+            <SecondaryBtn>Sign In</SecondaryBtn>
           </Link>
         )}
       </StyledNavbar>

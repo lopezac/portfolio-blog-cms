@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import { FlexRow } from "@components/globals";
 
-const StyledNavbar = styled.nav`
+const RowGapAlign = styled.div`
   ${FlexRow}
-  gap: 10px;
+  gap: 5px;
+  align-items: center;
 `;
 
-export default StyledNavbar;
+export default RowGapAlign;

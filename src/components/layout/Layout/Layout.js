@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { NavBar, Footer } from "../index";
-import MainWrapper from "./MainWrapper";
-import StyledMain from "./Main";
+import MainWrapper from "./MainWrapper.styles";
+import StyledMain from "./Main.styles";
 
 export default function Layout() {
   return (

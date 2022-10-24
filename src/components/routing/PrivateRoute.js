@@ -1,6 +1,6 @@
 import { useNavigate, Outlet } from "react-router-dom";
-import useAuth from "@hooks/useAuth";
 import { useEffect } from "react";
+import useAuth from "@hooks/useAuth";
 
 export default function PrivateRoute() {
   const { user } = useAuth();

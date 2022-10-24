@@ -1,8 +1,8 @@
 import styled from "styled-components";
+import { FlexCol } from "@components/globals";
 
 const FormRow = styled.div`
-  display: flex;
-  flex-direction: column;
+  ${FlexCol}
 `;
 
 export default FormRow;

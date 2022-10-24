@@ -1,12 +1,12 @@
 import "modern-normalize";
 import { createGlobalStyle } from "styled-components";
-import theme from "./theme";
+import { theme, FontStack, FlexCol } from "@components/globals";
 
 const GlobalStyle = createGlobalStyle`
   body > #root {
+    ${FontStack}
+    ${FlexCol}
     height: 100vh;
-    display: flex;
-    flex-direction: column;
     background-color: ${theme.darkPrimary};
     color: ${theme.white};
 

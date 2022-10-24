@@ -1,4 +1,6 @@
-import { PrimaryBtn } from "@components/buttons";
+import { FormBtn } from "@components/buttons";
+import { H1, Label } from "@components/globals";
+import { Form, FormRow, TextInput, PasswordInput } from "@components/forms";
 import { BlogApi } from "@services";
 import { useAuth } from "@hooks";
 
@@ -21,33 +23,26 @@ export default function SignInForm() {
 
   return (
     <>
-      <h1>Sign In Form</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="username">Username</label>
-          <input
-            type="text"
+      <H1>Sign In</H1>
+      <Form onSubmit={handleSubmit}>
+        <FormRow>
+          <Label htmlFor="username">Username</Label>
+          <TextInput
             id="username"
             name="username"
             minLength="2"
             maxLength="100"
             required
           />
-        </div>
+        </FormRow>
 
-        <div>
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            minLength="7"
-            required
-          />
-        </div>
+        <FormRow>
+          <Label htmlFor="password">Password</Label>
+          <PasswordInput id="password" name="password" minLength="7" />
+        </FormRow>
 
-        <PrimaryBtn type="submit">Submit</PrimaryBtn>
-      </form>
+        <FormBtn type="submit">Submit</FormBtn>
+      </Form>
     </>
   );
 }
