@@ -1,7 +1,7 @@
 import { string } from "prop-types";
 import { formatDate } from "@utils/date";
-import DeleteBtn from "./DeleteBtn";
-import UpdateBtn from "./UpdateBtn";
+import DeleteBtn from "@views/Posts/PostDetail/DeleteBtn";
+import UpdateBtn from "@views/Posts/PostDetail/UpdateBtn";
 import { RowList } from "@components/lists";
 
 function Comment({ username, text, date, id }) {

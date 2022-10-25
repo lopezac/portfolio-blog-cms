@@ -1,12 +1,16 @@
+import TH from "./styles/TH.styles";
+import TR from "./styles/TR.styles";
+import THead from "./styles/THead.styles";
+
 export default function PostHeaderRow() {
   return (
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Date</th>
-        <th>Keyword</th>
-        <th>Published</th>
-      </tr>
-    </thead>
+    <THead>
+      <TR>
+        <TH>Title</TH>
+        <TH>Date</TH>
+        <TH>Keyword</TH>
+        <TH>Published</TH>
+      </TR>
+    </THead>
   );
 }

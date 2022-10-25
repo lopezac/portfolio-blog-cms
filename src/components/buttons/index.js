@@ -1,6 +1,7 @@
 import StyledPrimaryBtn from "./PrimaryBtn.styles";
 import StyledSecondaryBtn from "./SecondaryBtn.styles";
-import FormBtn from "./FormBtn/FormBtn";
+import StyledPrimaryFormBtn from "./PrimaryFormBtn.styles";
+import StyledSecondaryFormBtn from "./SecondaryFormBtn.styles";
 import { Link } from "@components/wrappers";
 
 const handleLinkWrapping = (Component, props) => {
@@ -11,12 +12,18 @@ const handleLinkWrapping = (Component, props) => {
   return button;
 };
 
-const PrimaryBtn = (props) => {
+export const PrimaryBtn = (props) => {
   return handleLinkWrapping(StyledPrimaryBtn, props);
 };
 
-const SecondaryBtn = (props) => {
+export const SecondaryBtn = (props) => {
   return handleLinkWrapping(StyledSecondaryBtn, props);
 };
 
-export { FormBtn, PrimaryBtn, SecondaryBtn };
+export const PrimaryFormBtn = (props) => {
+  return handleLinkWrapping(StyledPrimaryFormBtn, props);
+};
+
+export const SecondaryFormBtn = (props) => {
+  return handleLinkWrapping(StyledSecondaryFormBtn, props);
+};

@@ -1,4 +1,5 @@
 import Link from "./Link/Link";
 import Anchor from "./Anchor/Anchor";
+import NoColorAnchor from "./NoColorAnchor/NoColorAnchor";
 
-export { Link, Anchor };
+export { Link, Anchor, NoColorAnchor };

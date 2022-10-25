@@ -8,6 +8,7 @@ const StyledPrimaryBtn = styled.button`
   background-color: ${theme.lighterPrimary};
   color: ${theme.white};
   cursor: pointer;
+  min-width: 60px;
 
   transition: transform 200ms ease-in-out;
   :hover,

@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { BlogApi } from "@services";
-import { TextInput } from "@components/forms";
+import { Form, FormRow, TextInput } from "@components/forms";
+import { H1, Label } from "@components/globals";
+import { PrimaryFormBtn, SecondaryFormBtn } from "@components/buttons";
 import TextEditor from "./TextEditor";
-import { Form, FormRow } from "@components/forms";
+import ButtonsDiv from "./ButtonsDiv.styles";
 
 export default function UpdatePost() {
   const [post, setPost] = useState(null);
@@ -35,46 +37,55 @@ export default function UpdatePost() {
 
   if (!post) return;
   return (
-    <Form onSubmit={handleSubmit}>
-      <FormRow>
-        <label htmlFor="title">Title</label>
-        <TextInput
-          name="title"
-          id="title"
-          required
-          minLength="3"
-          maxLength="300"
-          value={post.title}
-        />
-      </FormRow>
-      <FormRow>
-        <label htmlFor="keyword">Keyword</label>
-        <TextInput
-          name="keyword"
-          id="keyword"
-          required
-          minLength="2"
-          maxLength="80"
-          value={post.keyword}
-        />
-      </FormRow>
-      <FormRow>
-        <label htmlFor="imageUrl">Cover image URL</label>
-        <TextInput
-          name="imageUrl"
-          id="imageUrl"
-          value={post.imageUrl}
-          required
-          minLength="2"
-        />
-      </FormRow>
-      <FormRow>
-        <TextEditor editorRef={editorRef} initialValue={post.text} />
-      </FormRow>
-      <button>Update</button>
-      <button type="button" onClick={goBack}>
-        Cancel
-      </button>
-    </Form>
+    <>
+      <H1>Update Post</H1>
+      <Form onSubmit={handleSubmit}>
+        <FormRow>
+          <Label htmlFor="title">Title</Label>
+          <TextInput
+            name="title"
+            id="title"
+            required
+            minLength="3"
+            maxLength="300"
+            value={post.title}
+          />
+        </FormRow>
+
+        <FormRow>
+          <Label htmlFor="keyword">Keyword</Label>
+          <TextInput
+            name="keyword"
+            id="keyword"
+            required
+            minLength="2"
+            maxLength="80"
+            value={post.keyword}
+          />
+        </FormRow>
+
+        <FormRow>
+          <Label htmlFor="imageUrl">Cover image URL</Label>
+          <TextInput
+            name="imageUrl"
+            id="imageUrl"
+            value={post.imageUrl}
+            required
+            minLength="2"
+          />
+        </FormRow>
+
+        <FormRow>
+          <TextEditor editorRef={editorRef} initialValue={post.text} />
+        </FormRow>
+
+        <ButtonsDiv>
+          <SecondaryFormBtn type="submit">Update</SecondaryFormBtn>
+          <PrimaryFormBtn type="button" onClick={goBack}>
+            Cancel
+          </PrimaryFormBtn>
+        </ButtonsDiv>
+      </Form>
+    </>
   );
 }

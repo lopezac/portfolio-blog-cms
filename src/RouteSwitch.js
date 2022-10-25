@@ -7,7 +7,7 @@ import { PostsPage } from "@views/Posts";
 import PostDetail from "@views/Posts/PostDetail/PostDetail";
 import CreatePost from "@views/Posts/PostForm/CreatePost";
 import UpdatePost from "@views/Posts/PostForm/UpdatePost";
-import UpdateComment from "@views/Comments/UpdateComment";
+import { UpdateComment } from "@views/Comments";
 
 export default function RouteSwitch() {
   return (

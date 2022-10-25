@@ -1,17 +1,21 @@
 import { string } from "prop-types";
-import DeleteBtn from "./DeleteBtn";
-import UpdateBtn from "./UpdateBtn";
 import { formatDate } from "@utils/date";
 import { RowList } from "@components/lists";
+import { H1 } from "@components/globals";
+import DeleteBtn from "./DeleteBtn";
+import UpdateBtn from "./UpdateBtn";
+import SpaceBetweenFlex from "./SpaceBetweenFlex.styles";
 
 function PostInfo({ title, date, keyword, text }) {
   return (
     <section>
-      <div>
-        <h1>{title}</h1>
-        <UpdateBtn type="posts">Update</UpdateBtn>
-        <DeleteBtn type="posts">Delete</DeleteBtn>
-      </div>
+      <SpaceBetweenFlex>
+        <H1>{title}</H1>
+        <div>
+          <UpdateBtn type="posts">Update</UpdateBtn>
+          <DeleteBtn type="posts">Delete</DeleteBtn>
+        </div>
+      </SpaceBetweenFlex>
       <RowList>
         <li>{formatDate(date)}</li>
         <li>{keyword}</li>

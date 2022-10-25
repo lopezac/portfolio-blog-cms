@@ -9,10 +9,10 @@ function Anchor({ children, href = "#", ...rest }) {
   );
 }
 
-// Anchor.propTypes = {
-//   children: node,
-//   rest: node,
-//   href: string,
-// };
+Anchor.propTypes = {
+  children: node,
+  rest: node,
+  href: string,
+};
 
 export default Anchor;

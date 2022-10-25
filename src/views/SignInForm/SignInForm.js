@@ -1,4 +1,4 @@
-import { FormBtn } from "@components/buttons";
+import { SecondaryFormBtn } from "@components/buttons";
 import { H1, Label } from "@components/globals";
 import { Form, FormRow, TextInput, PasswordInput } from "@components/forms";
 import { BlogApi } from "@services";
@@ -41,7 +41,7 @@ export default function SignInForm() {
           <PasswordInput id="password" name="password" minLength="7" />
         </FormRow>
 
-        <FormBtn type="submit">Submit</FormBtn>
+        <SecondaryFormBtn type="submit">Submit</SecondaryFormBtn>
       </Form>
     </>
   );

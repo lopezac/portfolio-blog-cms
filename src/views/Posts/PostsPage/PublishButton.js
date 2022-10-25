@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { bool, string } from "prop-types";
-import { PrimaryBtn } from "@components/buttons";
+import { PrimaryBtn, SecondaryBtn } from "@components/buttons";
 import { BlogApi } from "@services";
 
 export default function PublishButton({ published, id }) {
@@ -28,8 +28,10 @@ export default function PublishButton({ published, id }) {
     updatePost();
   }, [isPublished]);
 
-  return (
-    <PrimaryBtn onClick={handleClick}>{isPublished.toString()}</PrimaryBtn>
+  return isPublished ? (
+    <SecondaryBtn onClick={handleClick}>True</SecondaryBtn>
+  ) : (
+    <PrimaryBtn onClick={handleClick}>False</PrimaryBtn>
   );
 }
 

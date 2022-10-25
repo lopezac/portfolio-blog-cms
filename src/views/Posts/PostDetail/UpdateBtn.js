@@ -1,11 +1,12 @@
 import { node, string } from "prop-types";
 import { useNavigate, useParams } from "react-router-dom";
+import { SecondaryBtn } from "@components/buttons";
 
 function UpdateBtn({ type, children, commentId }) {
   const { postId } = useParams();
   const navigate = useNavigate();
 
-  async function handleClick() {
+  function handleClick() {
     if (type === "posts") {
       navigate(`/${type}/${postId}/update`);
     } else {
@@ -14,9 +15,9 @@ function UpdateBtn({ type, children, commentId }) {
   }
 
   return (
-    <button type="button" onClick={handleClick}>
+    <SecondaryBtn type="button" onClick={handleClick}>
       {children}
-    </button>
+    </SecondaryBtn>
   );
 }
 

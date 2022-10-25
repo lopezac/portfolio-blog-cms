@@ -3,7 +3,7 @@ import { FlexCol } from "@components/globals";
 
 const StyledForm = styled.form`
   ${FlexCol}
-  gap: 10px;
+  gap: 13px;
 `;
 
 export default StyledForm;

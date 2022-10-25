@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { string } from "prop-types";
-import Comments from "./Comments";
+import { Comments } from "@views/Comments";
 import { BlogApi } from "@services";
 
 function PostComments({ id }) {

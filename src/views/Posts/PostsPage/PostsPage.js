@@ -1,22 +1,25 @@
 import { useState, useEffect } from "react";
-import PostsTable from "./PostsTable";
 import { BlogApi } from "@services";
+import PostsTable from "./PostsTable";
+import PostsNavigation from "./PostsNavigation";
+import { useQuery } from "@hooks";
 
 export default function PostsPage() {
   const [posts, setPosts] = useState([]);
+  const { page } = useQuery();
   const blogApi = BlogApi();
 
   useEffect(() => {
-    async function getPosts() {
-      try {
-        const data = await blogApi.getPosts();
-        setPosts(data);
-      } catch (err) {
-        throw Error("Error getting posts at CMS", err, posts);
-      }
-    }
-    getPosts();
+    blogApi
+      .getPosts({ page })
+      .then((data) => setPosts(data))
+      .catch((error) => error);
   }, []);
 
-  return <PostsTable posts={posts} />;
+  return (
+    <>
+      <PostsTable posts={posts} />
+      <PostsNavigation />
+    </>
+  );
 }

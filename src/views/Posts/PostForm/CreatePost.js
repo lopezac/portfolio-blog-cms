@@ -1,9 +1,11 @@
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { BlogApi } from "@services";
-import { TextInput } from "@components/forms";
+import { Form, FormRow, TextInput } from "@components/forms";
+import { H1, Label } from "@components/globals";
+import { PrimaryFormBtn, SecondaryFormBtn } from "@components/buttons";
 import TextEditor from "./TextEditor";
-import { Form, FormRow } from "@components/forms";
+import ButtonsDiv from "./ButtonsDiv.styles";
 
 export default function CreatePost() {
   const editorRef = useRef(null);
@@ -27,38 +29,47 @@ export default function CreatePost() {
   }
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <FormRow>
-        <label htmlFor="title">Title</label>
-        <TextInput
-          name="title"
-          id="title"
-          required
-          minLength="3"
-          maxLength="300"
-        />
-      </FormRow>
-      <FormRow>
-        <label htmlFor="keyword">Keyword</label>
-        <TextInput
-          name="keyword"
-          id="keyword"
-          required
-          minLength="2"
-          maxLength="80"
-        />
-      </FormRow>
-      <FormRow>
-        <label htmlFor="imageUrl">Cover image URL</label>
-        <TextInput name="imageUrl" id="imageUrl" required minLength="2" />
-      </FormRow>
-      <FormRow>
-        <TextEditor editorRef={editorRef} />
-      </FormRow>
-      <button>Create</button>
-      <button type="button" onClick={goBack}>
-        Cancel
-      </button>
-    </Form>
+    <>
+      <H1>Create Post</H1>
+      <Form onSubmit={handleSubmit}>
+        <FormRow>
+          <Label htmlFor="title">Title</Label>
+          <TextInput
+            name="title"
+            id="title"
+            required
+            minLength="3"
+            maxLength="300"
+          />
+        </FormRow>
+
+        <FormRow>
+          <Label htmlFor="keyword">Keyword</Label>
+          <TextInput
+            name="keyword"
+            id="keyword"
+            required
+            minLength="2"
+            maxLength="80"
+          />
+        </FormRow>
+
+        <FormRow>
+          <Label htmlFor="imageUrl">Cover image URL</Label>
+          <TextInput name="imageUrl" id="imageUrl" required minLength="2" />
+        </FormRow>
+
+        <FormRow>
+          <TextEditor editorRef={editorRef} />
+        </FormRow>
+
+        <ButtonsDiv>
+          <SecondaryFormBtn type="submit">Create</SecondaryFormBtn>
+          <PrimaryFormBtn type="button" onClick={goBack}>
+            Cancel
+          </PrimaryFormBtn>
+        </ButtonsDiv>
+      </Form>
+    </>
   );
 }

@@ -8,13 +8,12 @@ const Input = styled.input`
   border: 2px solid ${theme.darkerPrimary};
   padding: 10px;
 
-  &:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0px 60px ${theme.primary} inset !important;
-    // background-color: transparent;
-  }
-
-  :focus {
-    border: 2px solid ${theme.lightSecondary};
+  &:autofill,
+  &:-webkit-autofill,
+  &:-webkit-autofill:focus {
+    background: ${theme.primary};
+    color: ${theme.white};
+    transition: background 600000s 0s, color 600000s 0s !important;
   }
 `;
 
