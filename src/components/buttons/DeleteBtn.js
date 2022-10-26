@@ -1,6 +1,6 @@
 import { node, string } from "prop-types";
 import { useNavigate, useParams } from "react-router-dom";
-import { SecondaryBtn } from "@components/buttons";
+import { PrimaryBtn } from "@components/buttons";
 import { BlogApi } from "@services";
 import { reloadPage } from "@utils/various";
 
@@ -24,9 +24,9 @@ function DeleteBtn({ type, children, commentId }) {
   }
 
   return (
-    <SecondaryBtn type="button" onClick={handleClick}>
+    <PrimaryBtn type="button" onClick={handleClick}>
       {children}
-    </SecondaryBtn>
+    </PrimaryBtn>
   );
 }
 
