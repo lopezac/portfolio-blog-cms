@@ -1,4 +1,4 @@
-# portfolio
+# portfolio-blog-cms
 
 This is my the Content Management System (CMS) of my [Portfolio blog](https://lopezaxel.netlify.app/blog), 
 this is where I sign in and write posts for my blog, I can publish and unpublish 
