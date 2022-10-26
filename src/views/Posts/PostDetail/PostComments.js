@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { string } from "prop-types";
 import { Comments } from "@views/Comments";
 import { BlogApi } from "@services";
+import { H2 } from "@components/globals";
 
 function PostComments({ id }) {
   const blogApi = BlogApi();
@@ -13,7 +14,7 @@ function PostComments({ id }) {
 
   return (
     <section>
-      <h2>Comments</h2>
+      <H2>Comments</H2>
       <Comments comments={comments} />
     </section>
   );

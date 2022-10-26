@@ -5,6 +5,7 @@ const SpaceBetweenFlex = styled.div`
   ${FlexRow}
   justify-content: space-between;
   align-items: center;
+  margin: 20px 0 5px 0;
 
   div {
     ${FlexRow}

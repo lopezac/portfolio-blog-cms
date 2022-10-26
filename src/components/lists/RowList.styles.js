@@ -5,7 +5,7 @@ export const StyledRowList = styled.ul`
   ${FlexRow}
   gap: 20px;
   padding: 0;
-  margin-top: 0;
+  margin: 0;
 
   li:first-child {
     list-style-type: none;

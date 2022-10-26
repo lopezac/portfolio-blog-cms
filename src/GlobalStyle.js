@@ -1,4 +1,5 @@
 import "modern-normalize";
+import "./prism.css";
 import { createGlobalStyle } from "styled-components";
 import { theme, FontStack, FlexCol } from "@components/globals";
 

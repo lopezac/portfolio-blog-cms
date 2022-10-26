@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { BlogApi } from "@services";
-import { TextInput, DateInput } from "@components/forms";
+import { Form, FormRow, TextInput, DateInput } from "@components/forms";
+import { H1, Label } from "@components/globals";
+import { PrimaryFormBtn, SecondaryFormBtn } from "@components/buttons";
 
 export default function UpdatePost() {
   const [comment, setComment] = useState(null);
@@ -32,42 +34,45 @@ export default function UpdatePost() {
 
   if (!comment) return;
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="username">Username</label>
-        <TextInput
-          name="username"
-          id="username"
-          required
-          minLength="2"
-          maxLength="125"
-          value={comment.username}
-        />
-      </div>
-      <div>
-        <label htmlFor="text">Text</label>
-        <TextInput
-          name="text"
-          id="text"
-          required
-          minLength="2"
-          maxLength="500"
-          value={comment.text}
-        />
-      </div>
-      <div>
-        <label htmlFor="timestamp">Timestamp</label>
-        <DateInput
-          name="timestamp"
-          id="timestamp"
-          required
-          value={comment.timestamp}
-        />
-      </div>
-      <button>Update</button>
-      <button type="button" onClick={goBack}>
-        Cancel
-      </button>
-    </form>
+    <>
+      <H1>Update Comment</H1>
+      <Form onSubmit={handleSubmit}>
+        <FormRow>
+          <Label htmlFor="username">Username</Label>
+          <TextInput
+            name="username"
+            id="username"
+            required
+            minLength="2"
+            maxLength="125"
+            value={comment.username}
+          />
+        </FormRow>
+        <FormRow>
+          <Label htmlFor="text">Text</Label>
+          <TextInput
+            name="text"
+            id="text"
+            required
+            minLength="2"
+            maxLength="500"
+            value={comment.text}
+          />
+        </FormRow>
+        <FormRow>
+          <Label htmlFor="timestamp">Timestamp</Label>
+          <DateInput
+            name="timestamp"
+            id="timestamp"
+            required
+            value={comment.timestamp}
+          />
+        </FormRow>
+        <SecondaryFormBtn>Update</SecondaryFormBtn>
+        <PrimaryFormBtn type="button" onClick={goBack}>
+          Cancel
+        </PrimaryFormBtn>
+      </Form>
+    </>
   );
 }

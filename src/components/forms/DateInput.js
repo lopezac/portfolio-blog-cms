@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { formatDateYMD } from "@utils/date";
-import StyledDateInput from "./DateInput.style";
+import { Input } from "@components/globals";
 
 function DateInput(props) {
   const { value, ...rest } = props;
@@ -12,12 +12,7 @@ function DateInput(props) {
   }
 
   return (
-    <StyledDateInput
-      type="date"
-      onChange={handleChange}
-      value={inputValue}
-      {...rest}
-    />
+    <Input type="date" onChange={handleChange} value={inputValue} {...rest} />
   );
 }
 

@@ -1,26 +1,24 @@
 import { string } from "prop-types";
 import { formatDate } from "@utils/date";
 import { RowList } from "@components/lists";
-import { H1 } from "@components/globals";
-import DeleteBtn from "./DeleteBtn";
-import UpdateBtn from "./UpdateBtn";
-import SpaceBetweenFlex from "./SpaceBetweenFlex.styles";
+import { SmallGrayLi } from "@components/listitems";
+import { ActionButtons } from "@components/buttons";
+import SpaceBetweenFlex from "./styles/SpaceBetweenFlex.styles";
+import Title from "./styles/Title.styles";
+import PostText from "./PostText";
 
 function PostInfo({ title, date, keyword, text }) {
   return (
     <section>
       <SpaceBetweenFlex>
-        <H1>{title}</H1>
-        <div>
-          <UpdateBtn type="posts">Update</UpdateBtn>
-          <DeleteBtn type="posts">Delete</DeleteBtn>
-        </div>
+        <Title>{title}</Title>
+        <ActionButtons type="posts" />
       </SpaceBetweenFlex>
       <RowList>
-        <li>{formatDate(date)}</li>
-        <li>{keyword}</li>
+        <SmallGrayLi>{formatDate(date)}</SmallGrayLi>
+        <SmallGrayLi>{keyword}</SmallGrayLi>
       </RowList>
-      <div dangerouslySetInnerHTML={{ __html: text }} />
+      <PostText text={text} />
     </section>
   );
 }
