@@ -1,10 +1,12 @@
 import { SecondaryFormBtn } from "@components/buttons";
-import { H1, Label } from "@components/globals";
+import { H1, Label, P } from "@components/globals";
 import { Form, FormRow, TextInput, PasswordInput } from "@components/forms";
 import { BlogApi } from "@services";
 import { useAuth } from "@hooks";
+import { useState } from "react";
 
 export default function SignInForm() {
+  const [errors, setErrors] = useState(null);
   const blogApi = BlogApi();
   const { signIn } = useAuth();
 
@@ -17,7 +19,7 @@ export default function SignInForm() {
       const token = await blogApi.signIn(username, password);
       await signIn(token);
     } catch (err) {
-      throw Error("Error in the login");
+      setErrors("Incorrect username or password.");
     }
   }
 
@@ -43,6 +45,7 @@ export default function SignInForm() {
 
         <SecondaryFormBtn type="submit">Submit</SecondaryFormBtn>
       </Form>
+      <P>{errors}</P>
     </>
   );
 }
