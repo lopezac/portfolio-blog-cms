@@ -2,7 +2,6 @@ import getApiUrl from "./getApiUrl";
 import getQuery from "./getQuery";
 import getReqOptions from "./getReqOptions";
 import { useAuth } from "@hooks";
-import { isJSON } from "@utils/string";
 
 export default function BlogApi() {
   const apiUrl = getApiUrl();
@@ -146,7 +145,6 @@ export default function BlogApi() {
       };
 
       const res = await fetch(url, options);
-
       return await res.json();
     } catch (err) {
       throw Error("Error sign in user at CMS", err, username, password);
