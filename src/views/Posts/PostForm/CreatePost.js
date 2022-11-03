@@ -4,6 +4,7 @@ import { BlogApi } from "@services";
 import { Form, FormRow, TextInput } from "@components/forms";
 import { H1, Label } from "@components/globals";
 import { PrimaryFormBtn, SecondaryFormBtn } from "@components/buttons";
+import { useSocket } from "@hooks";
 import TextEditor from "./TextEditor";
 import ButtonsDiv from "./ButtonsDiv.styles";
 
@@ -11,17 +12,18 @@ export default function CreatePost() {
   const editorRef = useRef(null);
   const navigate = useNavigate();
   const blogApi = BlogApi();
+  const socket = useSocket();
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     const text = editorRef.current.getContent();
     const title = e.target.title.value;
     const keyword = e.target.keyword.value;
     const imageUrl = e.target.imageUrl.value;
 
-    blogApi.createPost(title, keyword, text, imageUrl).then((post) => {
-      navigate(`/posts/${post._id}`);
-    });
+    const post = await blogApi.createPost(title, keyword, text, imageUrl);
+    socket.emit("post:create", post);
+    navigate(`/posts/${post._id}`);
   }
 
   function goBack() {

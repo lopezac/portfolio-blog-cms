@@ -1,7 +1,7 @@
-import StyledPrimaryBtn from "./PrimaryBtn.styles";
-import StyledSecondaryBtn from "./SecondaryBtn.styles";
-import StyledPrimaryFormBtn from "./PrimaryFormBtn.styles";
-import StyledSecondaryFormBtn from "./SecondaryFormBtn.styles";
+import StyledPrimaryBtn from "./styles/PrimaryBtn.styles";
+import StyledSecondaryBtn from "./styles/SecondaryBtn.styles";
+import StyledPrimaryFormBtn from "./styles/PrimaryFormBtn.styles";
+import StyledSecondaryFormBtn from "./styles/SecondaryFormBtn.styles";
 import ActionButtons from "./ActionButtons";
 import { Link } from "@components/wrappers";
 

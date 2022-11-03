@@ -2,21 +2,23 @@ import { node, string } from "prop-types";
 import { useNavigate, useParams } from "react-router-dom";
 import { PrimaryBtn } from "@components/buttons";
 import { BlogApi } from "@services";
-import { reloadPage } from "@utils/various";
+import { useSocket } from "@hooks";
 
 function DeleteBtn({ type, children, commentId }) {
   const blogApi = BlogApi();
   const { postId } = useParams();
   const navigate = useNavigate();
+  const socket = useSocket();
 
   async function handleClick() {
     try {
       if (type === "posts") {
-        await blogApi.deletePost(postId, type);
+        const postIdentifier = await blogApi.deletePost(postId, type);
+        socket.emit("post:delete", postIdentifier);
         navigate(`/${type}`);
       } else {
         await blogApi.deletePost(commentId, type);
-        reloadPage();
+        socket.emit("comment:delete", commentId);
       }
     } catch (err) {
       throw Error("Error with delete btn at CMS", err, type);

@@ -4,31 +4,37 @@ import { BlogApi } from "@services";
 import { Form, FormRow, TextInput } from "@components/forms";
 import { H1, Label } from "@components/globals";
 import { PrimaryFormBtn, SecondaryFormBtn } from "@components/buttons";
+import { useSocket } from "@hooks";
 import TextEditor from "./TextEditor";
 import ButtonsDiv from "./ButtonsDiv.styles";
 
 export default function UpdatePost() {
-  const [post, setPost] = useState(null);
   const editorRef = useRef(null);
-
-  const blogApi = BlogApi();
   const { postId } = useParams();
   const navigate = useNavigate();
+  const [post, setPost] = useState(null);
+  const blogApi = BlogApi();
+  const socket = useSocket();
 
   useEffect(() => {
     blogApi.getPost(postId).then((data) => setPost(data));
   }, [postId]);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     const text = editorRef.current.getContent();
     const title = e.target.title.value;
     const keyword = e.target.keyword.value;
     const imageUrl = e.target.imageUrl.value;
 
-    blogApi.updatePost(postId, { title, keyword, text, imageUrl }).then(() => {
-      navigate(`/posts/${post._id}`);
+    const post = await blogApi.updatePost(postId, {
+      title,
+      keyword,
+      text,
+      imageUrl,
     });
+    socket.emit("post:update", post);
+    navigate(`/posts/${post._id}`);
   }
 
   function goBack() {

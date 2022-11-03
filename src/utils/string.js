@@ -1,4 +1,5 @@
 export const formatTitle = (title) => {
+  if (!title) return "";
   return title.toLowerCase().replaceAll(" ", "-");
 };
 

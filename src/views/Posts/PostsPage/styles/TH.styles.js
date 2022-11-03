@@ -4,7 +4,7 @@ const TH = styled.th`
   text-align: center;
   vertical-align: middle;
   padding: 11px 10px;
-  width: 20%;
+  width: 24%;
 
   &:first-child {
     width: 55%;

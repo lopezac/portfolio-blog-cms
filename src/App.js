@@ -1,6 +1,7 @@
 import { BrowserRouter } from "react-router-dom";
 import RouteSwitch from "./RouteSwitch";
 import { AuthProvider } from "@context/AuthProvider";
+import { SocketProvider } from "@context/Socket";
 import GlobalStyle from "./GlobalStyle";
 
 function App() {
@@ -8,9 +9,11 @@ function App() {
     <>
       <GlobalStyle />
       <BrowserRouter basename="/">
-        <AuthProvider>
-          <RouteSwitch />
-        </AuthProvider>
+        <SocketProvider>
+          <AuthProvider>
+            <RouteSwitch />
+          </AuthProvider>
+        </SocketProvider>
       </BrowserRouter>
     </>
   );

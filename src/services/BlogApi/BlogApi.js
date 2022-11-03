@@ -1,4 +1,4 @@
-import getApiUrl from "./getApiUrl";
+import { getApiUrl } from "@utils/various";
 import getQuery from "./getQuery";
 import getReqOptions from "./getReqOptions";
 import { useAuth } from "@hooks";

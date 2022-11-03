@@ -1,31 +1,37 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { BlogApi } from "@services";
+import { useSocket } from "@hooks";
 import { Form, FormRow, TextInput, DateInput } from "@components/forms";
 import { H1, Label } from "@components/globals";
 import { PrimaryFormBtn, SecondaryFormBtn } from "@components/buttons";
 
-export default function UpdatePost() {
+export default function UpdateComment() {
   const [comment, setComment] = useState(null);
 
   const blogApi = BlogApi();
   const { commentId } = useParams();
   const navigate = useNavigate();
+  const socket = useSocket();
 
   useEffect(() => {
     blogApi.getComment(commentId).then((data) => setComment(data));
   }, [commentId]);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     const username = e.target.username.value;
     const timestamp = e.target.timestamp.value;
     const text = e.target.text.value;
 
-    blogApi.updateComment(commentId, { username, timestamp, text }).then(() => {
-      navigate(`/posts/${comment.post}`);
+    const updatedComment = await blogApi.updateComment(commentId, {
+      username,
+      timestamp,
+      text,
     });
+    socket.emit("comment:update", updatedComment);
+    navigate(`/posts/${comment.post}`);
   }
 
   function goBack() {
