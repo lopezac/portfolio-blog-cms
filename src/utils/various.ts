@@ -2,7 +2,7 @@ export const reloadPage = () => {
   return window.location.reload();
 };
 
-export const numsUpTo = (num) => {
+export const numsUpTo = (num: number) => {
   let numbers = [];
   for (let i = 1; i <= num; i++) {
     numbers.push(i);
@@ -12,7 +12,7 @@ export const numsUpTo = (num) => {
 
 export const getApiUrl = () => {
   if (process.env.NODE_ENV === "development") {
-    return process.env.REACT_APP_API_DEVELOPMENT;
+    return "http://localhost:4000";
   }
-  return process.env.REACT_APP_API_PRODUCTION;
+  return "https://shielded-lowlands-16962.herokuapp.com";
 };

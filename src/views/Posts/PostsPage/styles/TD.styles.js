@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { theme } from "@components/globals";
 
 const TD = styled.td`
   text-align: center;
