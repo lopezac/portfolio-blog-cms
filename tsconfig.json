@@ -1,0 +1,14 @@
+{
+  "extends": "@tsconfig/create-react-app/tsconfig.json",
+  "include": ["./src"],
+  "exclude": ["./node_modules"],
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "strictNullChecks": true,
+    "module": "es6",
+    "jsx": "react",
+    "target": "es5",
+    "allowJs": true
+  }
+}
