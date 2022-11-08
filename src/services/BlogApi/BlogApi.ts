@@ -1,4 +1,4 @@
-import { getApiUrl } from "@utils/various";
+import { getApiUrl } from "src/utils/various";
 import getQuery from "./getQuery";
 import getReqOptions from "./getReqOptions";
 import { useAuth } from "src/hooks";
@@ -8,18 +8,23 @@ export default function BlogApi() {
   const { user } = useAuth();
 
   // Post
-  async function getPost(id) {
+  async function getPost(id: number) {
     try {
       const url = `${apiUrl}/posts/${id}`;
       const res = await fetch(url, getReqOptions());
 
       return await res.json();
     } catch (err) {
-      throw Error("Error getting post, at api", id, err);
+      throw Error("Error getting post, at api", err as ErrorOptions);
     }
   }
 
-  async function createPost(title, keyword, text, imageUrl) {
+  async function createPost(
+    title: string,
+    keyword: string,
+    text: string,
+    imageUrl: string
+  ) {
     try {
       const url = `${apiUrl}/posts`;
       const options = {
@@ -31,11 +36,11 @@ export default function BlogApi() {
 
       return await res.json();
     } catch (err) {
-      throw Error("Error creating post at API CMS", err);
+      throw Error("Error creating post at API CMS", err as ErrorOptions);
     }
   }
 
-  async function updatePost(id, params) {
+  async function updatePost(id: number, params: object) {
     try {
       const url = `${apiUrl}/posts/${id}`;
       const options = {
@@ -47,11 +52,11 @@ export default function BlogApi() {
 
       return await res.json();
     } catch (err) {
-      throw Error("Error updating post at CMS", err, id, ...params);
+      throw Error("Error updating post at CMS", err as ErrorOptions);
     }
   }
 
-  async function deletePost(id, type = "posts") {
+  async function deletePost(id: number, type = "posts") {
     try {
       const url = `${apiUrl}/${type}/${id}`;
       const options = { ...getReqOptions("DELETE", user) };
@@ -60,12 +65,20 @@ export default function BlogApi() {
 
       return await res.json();
     } catch (err) {
-      throw Error("Error deleting at CMS API", err, id, type);
+      throw Error("Error deleting at CMS API", err as ErrorOptions);
     }
   }
 
   // Posts
-  async function getPosts({ filter, sort, page } = {}) {
+  async function getPosts({
+    filter,
+    sort,
+    page,
+  }: {
+    filter: string;
+    sort: string;
+    page: string;
+  }) {
     try {
       const query = getQuery(filter, sort, page);
       const url = `${apiUrl}/posts?${query}`;
