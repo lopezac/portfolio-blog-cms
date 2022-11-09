@@ -1,5 +1,4 @@
 import { useEffect, useState, useRef } from "react";
-import { bool, string } from "prop-types";
 import { PrimaryBtn, SecondaryBtn } from "@components/buttons";
 import { BlogApi } from "@services";
 import { useSocket } from "@hooks";
@@ -41,8 +40,3 @@ export default function PublishButton({ published, id }) {
     <PrimaryBtn onClick={handleClick}>False</PrimaryBtn>
   );
 }
-
-PublishButton.propTypes = {
-  published: bool,
-  id: string,
-};

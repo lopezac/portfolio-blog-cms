@@ -1,14 +1,17 @@
-import { node, string } from "prop-types";
 import { useNavigate, useParams } from "react-router-dom";
-import { SecondaryBtn } from "@components/buttons";
+import { node, string } from "prop-types";
+import { SecondaryBtn } from "./index";
+import ActionBtnParams from "./ActionButtons.types";
 
-function UpdateBtn({ type, children, commentId }) {
+function UpdateBtn({ type, children, commentId }: ActionBtnParams) {
   const { postId } = useParams();
   const navigate = useNavigate();
 
   function handleClick() {
     if (type === "posts") {
-      navigate(`/${type}/${postId}/update`);
+      if (postId) {
+        navigate(`/${type}/${postId}/update`);
+      }
     } else {
       navigate(`/${type}/${commentId}/update`);
     }

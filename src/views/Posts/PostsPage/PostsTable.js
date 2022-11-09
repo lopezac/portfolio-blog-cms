@@ -1,4 +1,3 @@
-import { array } from "prop-types";
 import { H1 } from "@components/globals";
 import PostHeaderRow from "./PostHeaderRow";
 import PostRow from "./PostRow";
@@ -28,9 +27,5 @@ function PostsTable({ posts }) {
     </Table>
   );
 }
-
-PostsTable.propTypes = {
-  posts: array,
-};
 
 export default PostsTable;
