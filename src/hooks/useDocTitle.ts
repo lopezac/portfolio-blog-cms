@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function useDocTitle(title) {
+export default function useDocTitle(title: string) {
   const [docTitle, setDocTitle] = useState(title);
 
   useEffect(() => {

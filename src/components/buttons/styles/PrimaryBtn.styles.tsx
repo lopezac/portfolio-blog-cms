@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { theme } from "@components/globals";
+import { theme } from "src/components/globals";
 
 const StyledPrimaryBtn = styled.button`
   border: none;

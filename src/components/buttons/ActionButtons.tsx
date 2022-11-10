@@ -1,8 +1,9 @@
-import { string } from "prop-types";
 import UpdateBtn from "./UpdateBtn";
 import DeleteBtn from "./DeleteBtn";
 
-function ActionButtons({ type, commentId }) {
+type TActionButtons = { type: "posts" | "comments"; commentId: string };
+
+function ActionButtons({ type, commentId }: TActionButtons) {
   return (
     <div>
       <UpdateBtn type={type} commentId={commentId}>
@@ -14,10 +15,5 @@ function ActionButtons({ type, commentId }) {
     </div>
   );
 }
-
-ActionButtons.propTypes = {
-  type: string,
-  commentId: string,
-};
 
 export default ActionButtons;

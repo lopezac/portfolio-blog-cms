@@ -1,5 +1,4 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { node, string } from "prop-types";
 import { BlogApi } from "src/services";
 import { useSocket } from "src/hooks";
 import ActionBtnParams from "./ActionButtons.types";
@@ -34,11 +33,5 @@ function DeleteBtn({ type, children, commentId }: ActionBtnParams) {
     </PrimaryBtn>
   );
 }
-
-DeleteBtn.propTypes = {
-  type: string,
-  commentId: string,
-  children: node,
-};
 
 export default DeleteBtn;

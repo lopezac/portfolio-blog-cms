@@ -35,10 +35,10 @@ export default function CreatePost() {
       <H1>Create Post</H1>
       <Form onSubmit={handleSubmit}>
         <FormRow>
-          <Label htmlFor="title">Title</Label>
+          <Label htmlFor="titlePost">Title</Label>
           <TextInput
-            name="title"
-            id="title"
+            name="titlePost"
+            id="titlePost"
             required
             minLength="3"
             maxLength="300"

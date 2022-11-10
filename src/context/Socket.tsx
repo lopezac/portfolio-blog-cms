@@ -15,7 +15,7 @@ type ClientToServerEvents = {
   "comment:delete": () => void;
 };
 
-export const SocketContext = createContext<TSocketContext>();
+export const SocketContext = createContext<TSocketContext>(null);
 
 export const SocketProvider = ({ children }: { children: ReactNode }) => {
   const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(

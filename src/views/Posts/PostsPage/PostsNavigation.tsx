@@ -1,6 +1,6 @@
-import { numsUpTo } from "@utils/various";
-import { NoColorAnchor } from "@components/wrappers";
-import { CenterSmallNav } from "@components/lists";
+import { numsUpTo } from "src/utils/various";
+import { NoColorAnchor } from "src/components/wrappers";
+import { CenterSmallNav } from "src/components/lists";
 
 export default function PostsNavigation() {
   return (

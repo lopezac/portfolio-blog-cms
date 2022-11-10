@@ -1,5 +1,5 @@
-import StyledSecondaryBtn from "./SecondaryBtn.styles";
 import styled from "styled-components";
+import StyledSecondaryBtn from "./SecondaryBtn.styles";
 
 const StyledSecondaryFormBtn = styled(StyledSecondaryBtn)`
   padding: 10px 20px;

@@ -1,19 +1,29 @@
 import { getApiUrl } from "src/utils/various";
+import { useAuth } from "src/hooks";
+import {
+  ArrayPosts,
+  PostObject,
+  ArrayComments,
+  CommentObject,
+} from "src/types/Post.types";
+import { formatIntoDate } from "src/utils/format";
 import getQuery from "./getQuery";
 import getReqOptions from "./getReqOptions";
-import { useAuth } from "src/hooks";
 
 export default function BlogApi() {
   const apiUrl = getApiUrl();
   const { user } = useAuth();
 
   // Post
-  async function getPost(id: string) {
+  async function getPost(id: string): Promise<PostObject> {
     try {
       const url = `${apiUrl}/posts/${id}`;
-      const res = await fetch(url, getReqOptions());
 
-      return await res.json();
+      const res = await fetch(url, getReqOptions());
+      let data = await res.json();
+      data = formatIntoDate(data);
+
+      return data;
     } catch (err) {
       throw Error("Error getting post, at api", err as ErrorOptions);
     }
@@ -24,7 +34,7 @@ export default function BlogApi() {
     keyword: string,
     text: string,
     imageUrl: string
-  ) {
+  ): Promise<PostObject> {
     try {
       const url = `${apiUrl}/posts`;
       const options = {
@@ -33,14 +43,16 @@ export default function BlogApi() {
       };
 
       const res = await fetch(url, options);
+      let data = await res.json();
+      data = formatIntoDate(data);
 
-      return await res.json();
+      return data;
     } catch (err) {
       throw Error("Error creating post at API CMS", err as ErrorOptions);
     }
   }
 
-  async function updatePost(id: string, params: object) {
+  async function updatePost(id: string, params: object): Promise<PostObject> {
     try {
       const url = `${apiUrl}/posts/${id}`;
       const options = {
@@ -49,21 +61,24 @@ export default function BlogApi() {
       };
 
       const res = await fetch(url, options);
+      let data = await res.json();
+      data = formatIntoDate(data);
 
-      return await res.json();
+      return data;
     } catch (err) {
       throw Error("Error updating post at CMS", err as ErrorOptions);
     }
   }
 
-  async function deletePost(id: string, type = "posts") {
+  async function deletePost(id: string, type = "posts"): Promise<string> {
     try {
       const url = `${apiUrl}/${type}/${id}`;
       const options = { ...getReqOptions("DELETE", user) };
 
       const res = await fetch(url, options);
+      const data: string = await res.json();
 
-      return await res.json();
+      return data;
     } catch (err) {
       throw Error("Error deleting at CMS API", err as ErrorOptions);
     }
@@ -71,61 +86,58 @@ export default function BlogApi() {
 
   // Posts
   type postsParams = { filter?: string; sort?: string; page?: number };
-  async function getPosts({ filter, sort, page }: postsParams) {
+  async function getPosts({
+    filter,
+    sort,
+    page,
+  }: postsParams): Promise<ArrayPosts> {
     try {
       const query = getQuery(filter, sort, page);
       const url = `${apiUrl}/posts?${query}`;
 
       const res = await fetch(url, getReqOptions());
+      const data = await res.json();
+      // loop through data posts and convert each post timestamp string into date
 
-      return await res.json();
+      return data;
     } catch (err) {
       throw Error("Error getting posts, at api", err as ErrorOptions);
     }
   }
 
-  async function getPostComments(id: string) {
+  async function getPostComments(id: string): Promise<ArrayComments> {
     try {
       const url = `${apiUrl}/posts/${id}/comments`;
 
       const res = await fetch(url, getReqOptions());
+      const data = await res.json();
+      // loop through data posts and convert each post timestamp string into date
 
-      return await res.json();
+      return data;
     } catch (err) {
       throw Error("Error getting post comments at api", err as ErrorOptions);
     }
   }
 
   // Comment
-  async function getComment(id: string) {
+  async function getComment(id: string): Promise<CommentObject> {
     try {
       const url = `${apiUrl}/comments/${id}`;
 
       const res = await fetch(url, getReqOptions());
+      let data = await res.json();
+      data = formatIntoDate(data);
 
-      return await res.json();
+      return data;
     } catch (err) {
       throw Error("Error getting comment at API CMS", err as ErrorOptions);
     }
   }
 
-  async function submitComment(username: string, text: string, post: string) {
-    try {
-      const url = `${apiUrl}/comments`;
-      const options = {
-        ...getReqOptions("POST"),
-        body: JSON.stringify({ username, text, post }),
-      };
-
-      const res = await fetch(url, options);
-
-      return await res.json();
-    } catch (err) {
-      throw Error("Error submiting comment", err as ErrorOptions);
-    }
-  }
-
-  async function updateComment(id: string, params: object) {
+  async function updateComment(
+    id: string,
+    params: object
+  ): Promise<CommentObject> {
     try {
       const url = `${apiUrl}/comments/${id}`;
       const options = {
@@ -134,15 +146,16 @@ export default function BlogApi() {
       };
 
       const res = await fetch(url, options);
+      const data = await res.json();
 
-      return await res.json();
+      return data;
     } catch (err) {
       throw Error("Error updating comment at API CMS", err as ErrorOptions);
     }
   }
 
   // Auth
-  async function signIn(username: string, password: string) {
+  async function signIn(username: string, password: string): Promise<string> {
     try {
       const url = `${apiUrl}/sign-in`;
       const options = {
@@ -151,7 +164,9 @@ export default function BlogApi() {
       };
 
       const res = await fetch(url, options);
-      return await res.json();
+      const data = await res.json();
+
+      return data;
     } catch (err) {
       throw Error("Error sign in user at CMS", err as ErrorOptions);
     }
@@ -166,7 +181,6 @@ export default function BlogApi() {
     getPostComments,
     getComment,
     updateComment,
-    submitComment,
     signIn,
   };
 }

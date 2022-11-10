@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { theme } from "@components/globals";
+import { theme } from "src/components/globals";
 import StyledPrimaryBtn from "./PrimaryBtn.styles";
 
 const StyledSecondaryBtn = styled(StyledPrimaryBtn)`

@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
 import { useQuery, useSocket } from "src/hooks";
 import { BlogApi } from "src/services";
-import { PostObject } from "src/types/Post.types";
+import { ArrayPosts } from "src/types/Post.types";
 import PostsTable from "./PostsTable";
 import PostsNavigation from "./PostsNavigation";
-
-type ArrayPosts = Array<PostObject>;
 
 export default function PostsPage() {
   const [posts, setPosts] = useState<ArrayPosts>([]);

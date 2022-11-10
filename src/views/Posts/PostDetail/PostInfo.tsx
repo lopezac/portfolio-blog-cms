@@ -1,13 +1,19 @@
-import { string } from "prop-types";
-import { formatDate } from "@utils/date";
-import { RowList } from "@components/lists";
-import { SmallGrayLi } from "@components/listitems";
-import { ActionButtons } from "@components/buttons";
+import { formatDate } from "src/utils/date";
+import { RowList } from "src/components/lists";
+import { SmallGrayLi } from "src/components/listitems";
+import { ActionButtons } from "src/components/buttons";
 import SpaceBetweenFlex from "./styles/SpaceBetweenFlex.styles";
 import Title from "./styles/Title.styles";
 import PostText from "./PostText";
 
-function PostInfo({ title, date, keyword, text }) {
+type TPostInfo = {
+  title: string;
+  date: Date | number;
+  keyword: string;
+  text: string;
+};
+
+function PostInfo({ title, date, keyword, text }: TPostInfo) {
   return (
     <section>
       <SpaceBetweenFlex>
@@ -15,19 +21,12 @@ function PostInfo({ title, date, keyword, text }) {
         <ActionButtons type="posts" />
       </SpaceBetweenFlex>
       <RowList>
-        <SmallGrayLi>{formatDate(date)}</SmallGrayLi>
+        <SmallGrayLi>{formatDate(date).toString()}</SmallGrayLi>
         <SmallGrayLi>{keyword}</SmallGrayLi>
       </RowList>
       <PostText text={text} />
     </section>
   );
 }
-
-PostInfo.propTypes = {
-  title: string,
-  date: string,
-  keyword: string,
-  text: string,
-};
 
 export default PostInfo;

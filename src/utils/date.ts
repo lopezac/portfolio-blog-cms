@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 
-export const formatDate = (date: string) => {
+export const formatDate = (date: Date | number) => {
   try {
     return format(new Date(date), "PP");
   } catch (err) {

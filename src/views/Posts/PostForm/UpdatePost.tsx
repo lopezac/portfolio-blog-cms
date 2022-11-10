@@ -1,31 +1,41 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { BlogApi } from "@services";
-import { Form, FormRow, TextInput } from "@components/forms";
-import { H1, Label } from "@components/globals";
-import { PrimaryFormBtn, SecondaryFormBtn } from "@components/buttons";
-import { useSocket } from "@hooks";
+import { BlogApi } from "src/services";
+import { Form, FormRow, TextInput } from "src/components/forms";
+import { H1, Label } from "src/components/globals";
+import { PrimaryFormBtn, SecondaryFormBtn } from "src/components/buttons";
+import { useSocket } from "src/hooks";
+import { PostObject } from "src/types/Post.types";
 import TextEditor from "./TextEditor";
 import ButtonsDiv from "./ButtonsDiv.styles";
 
 export default function UpdatePost() {
-  const editorRef = useRef(null);
+  const editorRef = useRef<any>(null);
   const { postId } = useParams();
   const navigate = useNavigate();
-  const [post, setPost] = useState(null);
+  const [post, setPost] = useState<PostObject>(null);
   const blogApi = BlogApi();
   const socket = useSocket();
 
   useEffect(() => {
+    if (!postId) return;
     blogApi.getPost(postId).then((data) => setPost(data));
   }, [postId]);
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: Event) {
+    if (!socket || !postId || !editorRef.current || !e.target) return;
     e.preventDefault();
     const text = editorRef.current.getContent();
-    const title = e.target.title.value;
-    const keyword = e.target.keyword.value;
-    const imageUrl = e.target.imageUrl.value;
+    const target = e.target as HTMLFormElement;
+    console.log(
+      "target eevent",
+      target,
+      target.keyword.value,
+      target.titlePost.value
+    );
+    const title = target.titlePost.value;
+    const keyword = target.keyword.value;
+    const imageUrl = target.imageUrl.value;
 
     const post = await blogApi.updatePost(postId, {
       title,
@@ -33,8 +43,9 @@ export default function UpdatePost() {
       text,
       imageUrl,
     });
+    if (!post) return;
     socket.emit("post:update", post);
-    navigate(`/posts/${post._id}`);
+    // navigate(`/posts/${post._id}`);
   }
 
   function goBack() {
@@ -47,10 +58,10 @@ export default function UpdatePost() {
       <H1>Update Post</H1>
       <Form onSubmit={handleSubmit}>
         <FormRow>
-          <Label htmlFor="title">Title</Label>
+          <Label htmlFor="titlePost">Title</Label>
           <TextInput
-            name="title"
-            id="title"
+            name="titlePost"
+            id="titlePost"
             required
             minLength="3"
             maxLength="300"
