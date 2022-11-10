@@ -24,15 +24,11 @@ export default function UpdatePost() {
 
   async function handleSubmit(e: Event) {
     if (!socket || !postId || !editorRef.current || !e.target) return;
+    
     e.preventDefault();
     const text = editorRef.current.getContent();
     const target = e.target as HTMLFormElement;
-    console.log(
-      "target eevent",
-      target,
-      target.keyword.value,
-      target.titlePost.value
-    );
+
     const title = target.titlePost.value;
     const keyword = target.keyword.value;
     const imageUrl = target.imageUrl.value;
@@ -45,14 +41,14 @@ export default function UpdatePost() {
     });
     if (!post) return;
     socket.emit("post:update", post);
-    // navigate(`/posts/${post._id}`);
+    navigate(`/posts/${post._id}`);
   }
 
   function goBack() {
     navigate(-1);
   }
 
-  if (!post) return;
+  if (!post) return <H1>There is no post with that data</H1>;
   return (
     <>
       <H1>Update Post</H1>

@@ -7,5 +7,5 @@ export default function useDocTitle(title: string) {
     document.title = docTitle;
   }, [docTitle]);
 
-  return [docTitle, setDocTitle];
+  return [docTitle, setDocTitle] as const;
 }

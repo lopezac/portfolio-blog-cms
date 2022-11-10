@@ -18,7 +18,7 @@ function DeleteBtn({ type, children, commentId }: ActionBtnParams) {
         const postIdentifier = await blogApi.deletePost(postId, type);
         socket.emit("post:delete", postIdentifier);
         navigate(`/${type}`);
-      } else {
+      } else if (commentId) {
         await blogApi.deletePost(commentId, type);
         socket.emit("comment:delete", commentId);
       }

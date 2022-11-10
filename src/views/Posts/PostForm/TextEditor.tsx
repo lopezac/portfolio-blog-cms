@@ -1,8 +1,10 @@
-import PropTypes from "prop-types";
+import { MutableRefObject } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 
-function TextEditor({ editorRef, initialValue }) {
-  if (!editorRef) return;
+type TTextEditor = { editorRef: MutableRefObject<any>, initialValue: string };
+
+function TextEditor({ editorRef, initialValue }: TTextEditor) {
+  if (!editorRef) return <h1>Loading Text Editor</h1>;
   return (
     <div style={{ margin: "5px 0" }}>
       <Editor
@@ -25,12 +27,5 @@ function TextEditor({ editorRef, initialValue }) {
     </div>
   );
 }
-
-TextEditor.propTypes = {
-  editorRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
-  ]),
-};
 
 export default TextEditor;

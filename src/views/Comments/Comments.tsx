@@ -1,10 +1,8 @@
-import { array } from "prop-types";
-import { P } from "@components/globals";
-import Comment from "./Comment";
+import { ArrayComments } from "src/types/Post.types";
 import CommentsDiv from "./styles/CommentsDiv.styles";
+import Comment from "./Comment";
 
-function Comments({ comments }) {
-  if (!comments.length) return <P>No comments.</P>;
+function Comments({ comments }: { comments: ArrayComments}) {
   return (
     <CommentsDiv>
       {comments.map((comment) => {
@@ -21,9 +19,5 @@ function Comments({ comments }) {
     </CommentsDiv>
   );
 }
-
-Comments.propTypes = {
-  comments: array,
-};
 
 export default Comments;

@@ -1,7 +1,7 @@
 import UpdateBtn from "./UpdateBtn";
 import DeleteBtn from "./DeleteBtn";
 
-type TActionButtons = { type: "posts" | "comments"; commentId: string };
+type TActionButtons = { type: "posts" | "comments"; commentId?: string };
 
 function ActionButtons({ type, commentId }: TActionButtons) {
   return (

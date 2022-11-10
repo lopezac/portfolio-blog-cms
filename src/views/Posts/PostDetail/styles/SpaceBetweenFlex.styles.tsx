@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { FlexRow } from "@components/globals";
+import { FlexRow } from "src/components/globals";
 
 const SpaceBetweenFlex = styled.div`
   ${FlexRow}

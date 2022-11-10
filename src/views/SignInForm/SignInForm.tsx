@@ -1,20 +1,22 @@
-import { SecondaryFormBtn } from "@components/buttons";
-import { H1, Label, P } from "@components/globals";
-import { Form, FormRow, TextInput, PasswordInput } from "@components/forms";
-import { BlogApi } from "@services";
-import { useAuth } from "@hooks";
 import { useState } from "react";
+import { SecondaryFormBtn } from "src/components/buttons";
+import { H1, Label, P } from "src/components/globals";
+import { Form, FormRow, TextInput, PasswordInput } from "src/components/forms";
+import { BlogApi } from "src/services";
+import { useAuth } from "src/hooks";
 
 export default function SignInForm() {
-  const [errors, setErrors] = useState(null);
+  const [errors, setErrors] = useState("");
   const blogApi = BlogApi();
   const { signIn } = useAuth();
 
-  async function handleSubmit(event) {
+  async function handleSubmit(e: Event) {
     try {
-      event.preventDefault();
-      const username = event.target.username.value;
-      const password = event.target.password.value;
+      e.preventDefault();
+      const target = e.target as HTMLFormElement;
+      if (!target) return;
+      const username = target.username.value;
+      const password = target.password.value;
 
       const token = await blogApi.signIn(username, password);
       await signIn(token);
