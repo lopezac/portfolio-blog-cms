@@ -5,7 +5,7 @@ this is where I sign in and write posts for my blog, I can publish and unpublish
 posts, update and delete posts and comments, and write comments, and posts with
 [TinyMCE editor](https://www.tiny.cloud/docs/tinymce/6/), a complete text editor.
 
-Done with React as a front end, of my portfolio blog RESTful API: [portfolio-blog-api](https://github.com/lopezac/portfolio-blog-api).
+Done with React as a front end, of my portfolio blog RESTful API: [portfolio-blog-api](https://github.com/lopezac/portfolio-blog-api), later migrated from JavaScript to TypeScript.
 
 Picked the color scheme with [Paletton](https://paletton.com/)
 
@@ -16,6 +16,7 @@ Click [here](https://lopezaxel-blog-cms.netlify.app/) to see my Portfolio blog C
 # Technologies
 
 - [ReactJS](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
 - [styled-components](https://styled-components.com/)
 - [Netlify](https://www.netlify.com/)
 - [TinyMCE editor](https://www.tiny.cloud/docs/tinymce/6/)
