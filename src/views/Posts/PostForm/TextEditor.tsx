@@ -1,7 +1,7 @@
 import { MutableRefObject } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 
-type TTextEditor = { editorRef: MutableRefObject<any>, initialValue: string };
+type TTextEditor = { editorRef: MutableRefObject<any>; initialValue?: string };
 
 function TextEditor({ editorRef, initialValue }: TTextEditor) {
   if (!editorRef) return <h1>Loading Text Editor</h1>;

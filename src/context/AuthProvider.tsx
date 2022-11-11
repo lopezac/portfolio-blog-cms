@@ -2,14 +2,17 @@ import { createContext, useState, useMemo, ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 import { SessionStorage } from "src/services";
 
-type IAuthContext = { user: string | null };
-type ProviderValue = {
+type TAuthContext = {
   user: string | null;
   signIn: (data: string) => void;
   signOut: () => void;
 };
 
-export const AuthContext = createContext<IAuthContext>({ user: null });
+export const AuthContext = createContext<TAuthContext>({
+  user: null,
+  signIn: () => {},
+  signOut: () => {},
+});
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState(SessionStorage.get("user"));
@@ -27,7 +30,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     navigate("/");
   };
 
-  const value: ProviderValue = useMemo(
+  const value: TAuthContext = useMemo(
     () => ({ user, signIn, signOut }),
     [user]
   );

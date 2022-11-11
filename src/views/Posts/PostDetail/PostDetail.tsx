@@ -23,7 +23,7 @@ export default function PostDetail() {
     setDocTitle(post.title);
   }, [post]);
 
-  if (!post || !Object.keys(post).length) {
+  if (!post || !Object.keys(post).length || !postId) {
     return <H1>There is no post with that id or title</H1>;
   }
   return (

@@ -8,6 +8,6 @@ export const formatDate = (date: Date | number) => {
   }
 };
 
-export const formatDateYMD = (date = new Date()) => {
+export const formatDateYMD = (date: Date | number = new Date()) => {
   return format(new Date(date), "y-M-d");
 };

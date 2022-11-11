@@ -20,14 +20,20 @@ export default function PostsPage() {
 
   useEffect(() => {
     if (!socket) return;
+
     socket.on("post:create", (post) => {
+      if (!post) return;
       setPosts([...posts, post]);
     });
+
     socket.on("post:delete", (postId) => {
-      setPosts(posts.filter((post) => post._id !== postId));
+      setPosts(posts.filter((post) => post && post._id !== postId));
     });
+
     socket.on("post:update", (updatedPost) => {
-      const newPosts = posts.filter((post) => post._id !== updatedPost._id);
+      const newPosts = posts.filter(
+        (post) => post && post._id !== updatedPost._id
+      );
       newPosts.push(updatedPost);
       setPosts(newPosts);
     });

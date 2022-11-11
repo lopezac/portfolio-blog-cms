@@ -1,19 +1,21 @@
-import { ArrayComments } from "src/types/Post.types";
+import { ArrayComments } from "src/types/Comment.types";
 import CommentsDiv from "./styles/CommentsDiv.styles";
 import Comment from "./Comment";
 
-function Comments({ comments }: { comments: ArrayComments}) {
+function Comments({ comments }: { comments: ArrayComments }) {
   return (
     <CommentsDiv>
       {comments.map((comment) => {
         return (
-          <Comment
-            key={comment._id}
-            id={comment._id}
-            username={comment.username}
-            text={comment.text}
-            date={comment.timestamp}
-          />
+          comment && (
+            <Comment
+              key={comment._id}
+              id={comment._id}
+              username={comment.username}
+              text={comment.text}
+              date={comment.timestamp}
+            />
+          )
         );
       })}
     </CommentsDiv>

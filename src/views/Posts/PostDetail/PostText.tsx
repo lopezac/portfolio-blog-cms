@@ -1,13 +1,8 @@
-import { string } from "prop-types";
 import parse from "html-react-parser";
-import { P } from "@components/globals";
+import { P } from "src/components/globals";
 
-function PostText({ text }) {
+function PostText({ text }: { text: string }) {
   return <P>{parse(text)}</P>;
 }
-
-PostText.propTypes = {
-  text: string,
-};
 
 export default PostText;

@@ -1,11 +1,7 @@
 import { getApiUrl } from "src/utils/various";
 import { useAuth } from "src/hooks";
-import {
-  ArrayPosts,
-  PostObject,
-  ArrayComments,
-  CommentObject,
-} from "src/types/Post.types";
+import { ArrayPosts, PostObject } from "src/types/Post.types";
+import { ArrayComments, CommentObject } from "src/types/Comment.types";
 import { formatIntoDate } from "src/utils/format";
 import getQuery from "./getQuery";
 import getReqOptions from "./getReqOptions";

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { SecondaryFormBtn } from "src/components/buttons";
 import { H1, Label, P } from "src/components/globals";
 import { Form, FormRow, TextInput, PasswordInput } from "src/components/forms";
@@ -10,7 +10,7 @@ export default function SignInForm() {
   const blogApi = BlogApi();
   const { signIn } = useAuth();
 
-  async function handleSubmit(e: Event) {
+  async function handleSubmit(e: FormEvent) {
     try {
       e.preventDefault();
       const target = e.target as HTMLFormElement;

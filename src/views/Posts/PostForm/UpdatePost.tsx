@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { BlogApi } from "src/services";
 import { Form, FormRow, TextInput } from "src/components/forms";
@@ -6,6 +6,7 @@ import { H1, Label } from "src/components/globals";
 import { PrimaryFormBtn, SecondaryFormBtn } from "src/components/buttons";
 import { useSocket } from "src/hooks";
 import { PostObject } from "src/types/Post.types";
+import { FormElements } from "src/types/Form.types";
 import TextEditor from "./TextEditor";
 import ButtonsDiv from "./ButtonsDiv.styles";
 
@@ -22,12 +23,12 @@ export default function UpdatePost() {
     blogApi.getPost(postId).then((data) => setPost(data));
   }, [postId]);
 
-  async function handleSubmit(e: Event) {
+  async function handleSubmit(e: FormEvent) {
     if (!socket || !postId || !editorRef.current || !e.target) return;
-    
+
     e.preventDefault();
     const text = editorRef.current.getContent();
-    const target = e.target as HTMLFormElement;
+    const target = e.target as FormElements;
 
     const title = target.titlePost.value;
     const keyword = target.keyword.value;

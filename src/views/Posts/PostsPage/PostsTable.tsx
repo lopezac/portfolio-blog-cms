@@ -14,14 +14,16 @@ function PostsTable({ posts }: { posts: ArrayPosts }) {
       <tbody>
         {posts.map((post) => {
           return (
-            <PostRow
-              key={post._id}
-              published={post.published}
-              title={post.title}
-              date={post.timestamp}
-              keyword={post.keyword}
-              id={post._id}
-            />
+            post && (
+              <PostRow
+                key={post._id}
+                published={post.published}
+                title={post.title}
+                date={post.timestamp}
+                keyword={post.keyword}
+                id={post._id}
+              />
+            )
           );
         })}
       </tbody>

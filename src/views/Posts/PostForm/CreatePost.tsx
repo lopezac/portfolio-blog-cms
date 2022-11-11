@@ -1,10 +1,11 @@
-import { useRef } from "react";
+import { FormEvent, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { BlogApi } from "src/services";
 import { Form, FormRow, TextInput } from "src/components/forms";
 import { H1, Label } from "src/components/globals";
 import { PrimaryFormBtn, SecondaryFormBtn } from "src/components/buttons";
 import { useSocket } from "src/hooks";
+import { FormElements } from "src/types/Form.types";
 import TextEditor from "./TextEditor";
 import ButtonsDiv from "./ButtonsDiv.styles";
 
@@ -14,16 +15,16 @@ export default function CreatePost() {
   const blogApi = BlogApi();
   const socket = useSocket();
 
-  async function handleSubmit(e: Event) {
+  async function handleSubmit(e: FormEvent) {
     if (!socket || !editorRef.current || !e.target) return;
 
     e.preventDefault();
     const text = editorRef.current.getContent();
-    const target = e.target as HTMLFormElement;
+    const target = e.target as FormElements;
 
-    const title = e.target.title.value;
-    const keyword = e.target.keyword.value;
-    const imageUrl = e.target.imageUrl.value;
+    const title = target.titlePost.value;
+    const keyword = target.keyword.value;
+    const imageUrl = target.imageUrl.value;
 
     const post = await blogApi.createPost(title, keyword, text, imageUrl);
     if (!post) return;
